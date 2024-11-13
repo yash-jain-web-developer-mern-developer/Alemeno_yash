@@ -14,7 +14,6 @@ This is a credit approval system built with Django, PostgreSQL, and Docker. It i
   - Run `docker-compose up --build` to start the application and all its dependencies.
   - The application will be accessible at `http://localhost:8000/`.
 
-- **Bonus**: Unit tests were added for models and views to ensure code reliability.
 
 Please feel free to review the project and let me know if you have any questions.
 
