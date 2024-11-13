@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app  # Mount project files
+      - ./customer_data.xlsx:/app/customer_data.xlsx  # Mount customer data file
+      - ./loan_data.xlsx:/app/loan_data.xlsx  # Mount loan data file
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: 1  # Improves logging in Docker
+    depends_on:
+      - db
+      - redis
+    networks:
+      - app-network
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: credit_approval
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  celery:
+    build: .
+    command: celery -A credit_approval worker --loglevel=info
+    volumes:
+      - .:/app  # Mount project files
+      - ./customer_data.xlsx:/app/customer_data.xlsx  # Mount customer data file
+      - ./loan_data.xlsx:/app/loan_data.xlsx  # Mount loan data file
+    depends_on:
+      - redis
+      - db
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
