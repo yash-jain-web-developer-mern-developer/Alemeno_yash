@@ -9,7 +9,9 @@ This is a credit approval system built with Django, PostgreSQL, and Docker. It i
 - **Code Quality**: The code is structured to ensure clear separation of concerns with models, views, serializers, and tests organized properly.
 
 - **Submission Instructions**:
-  - Clone the repository: `git clone <repository-url>`
+  - Clone the repository: `git clone (https://github.com/yash-jain-web-developer-mern-developer/Alemeno_yash)
+  - cd Alemenno_yash
+  - cd credit_approval
   - Install Docker and Docker Compose (if not already installed).
   - Run `docker-compose up --build` to start the application and all its dependencies.
   - The application will be accessible at `http://localhost:8000/`.
