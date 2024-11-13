@@ -21,4 +21,4 @@ Please feel free to review the project and let me know if you have any questions
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yash-jain-web-developer-mern-developer/Alemeno_yash/tree/main/credit_approval
+   git clone https://github.com/yash-jain-web-developer-mern-developer/Alemeno_yash
